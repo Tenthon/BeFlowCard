@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_700"
+    tools:context=".BeFlowCardActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:padding="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/backgroun_shape"
+        android:layout_marginRight="20dp">
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Card Number"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/edtCardNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="19"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Card Name"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/edtCardName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="25"
+                />
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textJudul"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expiration Date"
+                    android:textStyle="bold"/>
+                <!--                <EditText-->
+                <!--                    android:focusable="false"-->
+                <!--                    android:id="@+id/edtMonth"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:hint="Month"-->
+                <!--                    android:drawableRight="@drawable/ic_drop"-->
+                <!--                    android:layout_below="@id/textJudul"/>-->
+
+                <Spinner
+                    android:id="@+id/spinnerMont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textJudul"/>
+
+                <!--                <EditText-->
+                <!--                    android:focusable="false"-->
+                <!--                    android:id="@+id/edtYears"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:hint="Year"-->
+                <!--                    android:layout_toRightOf="@id/textJudul"-->
+                <!--                    android:drawableRight="@drawable/ic_drop"-->
+                <!--                    android:layout_below="@id/textJudul"/>-->
+
+                <Spinner
+                    android:id="@+id/spinnerYears"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/textJudul"
+                    android:layout_below="@id/textJudul"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="CVV"
+                    android:layout_toRightOf="@id/spinnerYears"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:id="@+id/edtCvv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="1234"
+                    android:maxLength="5"
+                    android:inputType="number"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/spinnerYears"
+                    android:layout_below="@id/textJudul"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentBottom="true"
+
+            android:text="Submit"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relCardBelakang"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ic_card_back"
+        android:visibility="gone"
+        android:animateLayoutChanges="true"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:id="@+id/textVCC"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relCardDepan"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:animateLayoutChanges="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible"
+        android:background="@drawable/ic_card_bg"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/imgChip"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_chip"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_mastercard"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:focusable="false"
+            android:id="@+id/edtNoCard"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgChip"
+            android:text="#### #### #### ####"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/txtJudulNama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Card Name"
+            android:layout_below="@id/edtNoCard"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/edtTxtNama"
+            android:focusable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tenthon Aligen Audit"
+            android:textSize="12dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/txtJudulNama"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/txtJudulExpires"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expires"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/edtNoCard"
+            android:textColor="@color/white"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/edtTxtExpires"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtJudulNama"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="MM/YY"
+            android:textColor="@color/white"
+            android:textSize="12dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

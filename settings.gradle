@@ -1,0 +1,3 @@
+include ':BeFlowCard'
+include ':app'
+rootProject.name = "BeFlowCard"
