@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.spe.beflowcard">
+    package="com.spe.beflowcardlib">
 
     <application>
-        <activity android:name=".BeFlowCardActivity"></activity>
+        <activity android:name="com.spe.beflowcardlib.BeFlowCardActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
-package com.spe.beflowcard;
+package com.spe.beflowcardlib;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 

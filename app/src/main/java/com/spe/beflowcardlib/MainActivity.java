@@ -1,8 +1,7 @@
-package com.spe.beflowcard;
+package com.spe.beflowcardlib;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {

@@ -10,7 +10,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/BeFlowCard" />
+            <option value="$PROJECT_DIR$/BeFlowCardLib" />
+            <option value="$PROJECT_DIR$/Library" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

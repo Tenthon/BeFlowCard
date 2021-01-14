@@ -1,4 +1,4 @@
-package com.spe.beflowcard;
+package com.spe.beflowcardlib;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,4 +1,4 @@
-package com.spe.beflowcard;
+package com.spe.beflowcardlib;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.spe.beflowcard.test", appContext.getPackageName());
+        assertEquals("com.spe.beflowcard", appContext.getPackageName());
     }
 }
