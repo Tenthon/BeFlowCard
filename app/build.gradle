@@ -2,6 +2,10 @@ plugins {
     id 'com.android.application'
 }
 
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.tenthon'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -36,8 +40,6 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-//    implementation project(':library')
     implementation 'com.github.jitpack:android-example:1.0.1'
 
 }
