@@ -1,17 +1,23 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'maven-publish'
 }
 
-apply plugin: 'com.github.dcendents.android-maven'
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+    maven { url "https://jitpack.io" }
+}
 
-group='com.github.tenthon'
+group = 'com.github.tenthon'
+version = '1.0'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.spe.beflowcard"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -30,6 +36,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
@@ -42,4 +51,18 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.github.jitpack:android-example:1.0.1'
 
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.tenthon'
+                artifactId = 'android-example'
+                version = '1.0'
+            }
+        }
+    }
 }
