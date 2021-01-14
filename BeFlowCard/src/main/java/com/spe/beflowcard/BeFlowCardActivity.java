@@ -21,6 +21,7 @@ import android.widget.Toast;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
+
 public class BeFlowCardActivity extends AppCompatActivity {
     private EditText edtCardNumber, edtCardName, edtCVV;
     private TextView textCard, textName, textExpires, textVCCBelakang;
