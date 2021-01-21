@@ -4,26 +4,30 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 
 public class BeFlowCardActivity extends AppCompatActivity {
-    private EditText edtCardNumber, edtCardName, edtCVV;
+    private EditText edtCardNumber, edtCardName, edtMonth, edtYears, edtCVV, edtTxtCardNumber, edtTxtName, edtTxtExpires;
     private TextView textCard, textName, textExpires, textVCCBelakang;
     private RelativeLayout relDepan, relBelakang;
     Boolean isDelete;
@@ -35,17 +39,28 @@ public class BeFlowCardActivity extends AppCompatActivity {
             "2019","2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030"};
     private String monthSelect;
     private Button btnSubmit;
-    private String valueMonth, valueYears, valueCardNumber, valueCardName, valueCVV;
+    private ImageView imageCard;
+    private String valueCardNumber = null;
+    private String valueCardName = null;
+    private String valueMonth = null;
+    private String valueYears = null;
+    private String valueCVV = null;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_be_flow_card);
         initView();
     }
+
     private void initView() {
         edtCardNumber = findViewById(R.id.edtCardNumber);
         edtCardName = findViewById(R.id.edtCardName);
+        //edtMonth = findViewById(R.id.edtMonth);
         spinnerMonth = findViewById(R.id.spinnerMont);
+        //edtYears = findViewById(R.id.edtYears);
         spinnerYears = findViewById(R.id.spinnerYears);
         edtCVV = findViewById(R.id.edtCvv);
         textCard = findViewById(R.id.edtNoCard);
@@ -55,6 +70,7 @@ public class BeFlowCardActivity extends AppCompatActivity {
         relBelakang = findViewById(R.id.relCardBelakang);
         textVCCBelakang = findViewById(R.id.textVCC);
         btnSubmit = findViewById(R.id.btnSubmit);
+        imageCard = findViewById(R.id.imgCard);
 
 
         //textWatcher untuk Card Number
@@ -78,11 +94,32 @@ public class BeFlowCardActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String source = s.toString();
-                valueCardNumber = s.toString();
+                //valueCardNumber = s.toString();
                 int length = source.length();
 
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append(source);
+                System.out.println("nilain " + length + "value" + valueCardNumber);
+                //untuk validasi jenis kartu
+                if (length >= 4) {
+                    imageCard.setVisibility(VISIBLE);
+                    if(source.equals("8888")){
+                        imageCard.setImageResource(R.drawable.creditcard);
+                        Toast.makeText(getApplicationContext(), "Credit Card", Toast.LENGTH_SHORT).show();
+                    } else if(source.equals("5555")) {
+                        imageCard.setImageResource(R.drawable.debit);
+                        Toast.makeText(getApplicationContext(), "Debit Card", Toast.LENGTH_SHORT).show();
+                    } else if(source.equals("1111")){
+                        imageCard.setImageResource(R.drawable.visa);
+                        Toast.makeText(getApplicationContext(), "Visa Card", Toast.LENGTH_SHORT).show();
+                    } else if(source.equals("1234")){
+                        imageCard.setImageResource(R.drawable.ic_mastercard);
+                        Toast.makeText(getApplicationContext(), "Master Card", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    imageCard.setVisibility(INVISIBLE);
+                }
+
 
                 if (length > 0 && length % 5 == 0) {
                     if (isDelete)
@@ -109,9 +146,10 @@ public class BeFlowCardActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 textName.setText(s);
-                valueCardName = s.toString();
+                spinnerMonth.setEnabled(true);
+                //valueCardName = s.toString();
                 if (s.length() == 0) {
-                    textName.setText("Tenthon Aligen Audit");
+                    textName.setText("#### #### #### ####");
                 }
             }
 
@@ -134,13 +172,20 @@ public class BeFlowCardActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 textVCCBelakang.setText(s);
-                valueCVV = textVCCBelakang.getText().toString();
+//                valueCVV = textVCCBelakang.getText().toString();
+//                System.out.println("value oncek" + valueCVV);
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                String source = s.toString();
+                valueCVV = source;
+                System.out.println("data source" + source);
 
+                if ( source.length() >= 5){
+                    showFront();
+                }
             }
         };
         edtCVV.addTextChangedListener(textWatcherVCC);
@@ -151,7 +196,18 @@ public class BeFlowCardActivity extends AppCompatActivity {
         edtCVV.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+//                Animation bottomUp = AnimationUtils.loadAnimation(getApplicationContext(),
+//                        R.anim.bottom_up);
+//                relBelakang.startAnimation(bottomUp);
+//                relBelakang.setVisibility(VISIBLE);
+//
+//
+//                Animation bottomDown = AnimationUtils.loadAnimation(getApplicationContext(),
+//                        R.anim.bottom_down);
+//                relDepan.startAnimation(bottomDown);
+//                relDepan.setVisibility(GONE);
                 showBack();
+                textExpires.setBackgroundResource(R.drawable.background_treansparant);
                 return false;
             }
         });
@@ -159,7 +215,19 @@ public class BeFlowCardActivity extends AppCompatActivity {
         edtCardNumber.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+//                Animation bottomUp = AnimationUtils.loadAnimation(getApplicationContext(),
+//                        R.anim.bottom_up);
+//                relDepan.startAnimation(bottomUp);
+//                relDepan.setVisibility(VISIBLE);
+//
+//                Animation bottomDown = AnimationUtils.loadAnimation(getApplicationContext(),
+//                        R.anim.bottom_down);
+//                relBelakang.startAnimation(bottomDown);
+//                relBelakang.setVisibility(GONE);
                 showFront();
+                textCard.setBackgroundResource(R.drawable.background_animasi);
+                textName.setBackgroundResource(R.drawable.background_treansparant);
+                textExpires.setBackgroundResource(R.drawable.background_treansparant);
                 return false;
             }
         });
@@ -168,7 +236,19 @@ public class BeFlowCardActivity extends AppCompatActivity {
         edtCardName.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+//                Animation bottomUp = AnimationUtils.loadAnimation(getApplicationContext(),
+//                        R.anim.bottom_up);
+//                relDepan.startAnimation(bottomUp);
+//                relDepan.setVisibility(VISIBLE);
+//
+//                Animation bottomDown = AnimationUtils.loadAnimation(getApplicationContext(),
+//                        R.anim.bottom_down);
+//                relBelakang.startAnimation(bottomDown);
+//                relBelakang.setVisibility(GONE);
                 showFront();
+                textCard.setBackgroundResource(R.drawable.background_treansparant);
+                textName.setBackgroundResource(R.drawable.background_animasi);
+                textExpires.setBackgroundResource(R.drawable.background_treansparant);
                 return false;
             }
         });
@@ -202,8 +282,8 @@ public class BeFlowCardActivity extends AppCompatActivity {
                     monthSelect = textExpires.getText().toString();
                     spinnerYears.setEnabled(true);
                     valueMonth = adapterMonth.getItem(i);
+                    spinnerMonth.setEnabled(true);
                 }
-
             }
 
             @Override
@@ -215,7 +295,12 @@ public class BeFlowCardActivity extends AppCompatActivity {
         spinnerMonth.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getApplicationContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(spinnerMonth.getWindowToken(),0);
                 showFront();
+                textCard.setBackgroundResource(R.drawable.background_treansparant);
+                textName.setBackgroundResource(R.drawable.background_treansparant);
+                textExpires.setBackgroundResource(R.drawable.background_animasi);
                 return false;
             }
         });
@@ -254,7 +339,12 @@ public class BeFlowCardActivity extends AppCompatActivity {
         spinnerYears.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getApplicationContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(spinnerYears.getWindowToken(),0);
                 showFront();
+                textCard.setBackgroundResource(R.drawable.background_treansparant);
+                textName.setBackgroundResource(R.drawable.background_treansparant);
+                textExpires.setBackgroundResource(R.drawable.background_animasi);
                 return false;
             }
         });
@@ -264,18 +354,19 @@ public class BeFlowCardActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(valueCardNumber != null  && valueCardName != null && valueMonth != null && valueYears != null
-                        && valueCVV != null){
+                valueCardNumber = edtCardNumber.getText().toString();
+                valueCardName = edtCardName.getText().toString();
+                valueCVV = edtCVV.getText().toString();
+                if(valueCardNumber.equals("") || valueCardName.equals("") || valueMonth == null || valueYears == null
+                        || valueCVV.equals("")){
+                    Toast.makeText(getApplicationContext(),"Informasi harus lengkap" , Toast.LENGTH_SHORT).show();
+                }else{
                     System.out.println("Card Number" + valueCardNumber);
                     System.out.println("Card Name" + valueCardName);
                     System.out.println("Card Month" + valueMonth);
                     System.out.println("Card Years"+ valueYears);
                     System.out.println("Card CVV" + valueCVV);
-                } else {
-                    Toast.makeText(getApplicationContext(),"Informasi harus lengkap" , Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
     }
