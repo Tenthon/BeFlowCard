@@ -366,6 +366,7 @@ public class BeFlowCardActivity extends AppCompatActivity {
                     System.out.println("Card Month" + valueMonth);
                     System.out.println("Card Years"+ valueYears);
                     System.out.println("Card CVV" + valueCVV);
+                    Toast.makeText(getApplicationContext(),"Submit berhasil !!!" , Toast.LENGTH_SHORT).show();
                 }
             }
         });
