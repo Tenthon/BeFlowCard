@@ -30,10 +30,12 @@
                 android:text="Card Number"
                 android:textStyle="bold"/>
             <EditText
+                android:singleLine="true"
                 android:id="@+id/edtCardNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="19"
+                android:nextFocusDown="@id/edtCardName"
                 android:inputType="number"
                 android:imeOptions="actionNext"/>
 
@@ -48,6 +50,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="25"
+                android:nextFocusDown="@id/edtCvv"
+                android:singleLine="true"
                 android:imeOptions="actionNext"
                 android:inputType="textCapWords"
                 />
