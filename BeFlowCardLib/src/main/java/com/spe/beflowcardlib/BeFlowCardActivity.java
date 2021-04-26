@@ -251,17 +251,25 @@ public class BeFlowCardActivity extends AppCompatActivity {
             }
         });
 
-        edtCardNumber.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT ) {
-                    // handle next button
-                    textCard.setBackgroundResource(R.drawable.background_animasi);
-                    textName.setBackgroundResource(R.drawable.background_treansparant);
-                    textExpires.setBackgroundResource(R.drawable.background_treansparant);
-                    return true;
+        edtCardNumber.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                switch(keyCode) {
+                    case KeyEvent.KEYCODE_ENTER:
+                        textCard.setBackgroundResource(R.drawable.background_animasi);
+                        textName.setBackgroundResource(R.drawable.background_treansparant);
+                        textExpires.setBackgroundResource(R.drawable.background_treansparant);
+                        break;
+
+                    default:
+                        return false;
                 }
-                return false;
+
+                return true;
+
             }
         });
 
@@ -286,20 +294,26 @@ public class BeFlowCardActivity extends AppCompatActivity {
             }
         });
 
-        edtCardName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        edtCardName.setOnKeyListener(new View.OnKeyListener() {
 
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT ) {
-                    // handle next button
-                    textCard.setBackgroundResource(R.drawable.background_treansparant);
-                    textName.setBackgroundResource(R.drawable.background_animasi);
-                    textExpires.setBackgroundResource(R.drawable.background_treansparant);
-                    return true;
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                switch(keyCode) {
+                    case KeyEvent.KEYCODE_ENTER:
+                        textCard.setBackgroundResource(R.drawable.background_treansparant);
+                        textName.setBackgroundResource(R.drawable.background_animasi);
+                        textExpires.setBackgroundResource(R.drawable.background_treansparant);
+                        break;
+
+                    default:
+                        return false;
                 }
-                return false;
+
+                return true;
+
             }
         });
-
 
         mySpinner();
         buttonSubmit();
