@@ -286,7 +286,7 @@ public class BeFlowCardActivity extends AppCompatActivity {
             }
         });
 
-        edtCardNumber.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        edtCardName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_NEXT ) {
