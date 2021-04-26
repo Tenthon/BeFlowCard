@@ -218,6 +218,8 @@ public class BeFlowCardActivity extends AppCompatActivity {
             @Override
             public boolean onKey(View v, int actionId, KeyEvent event) {
                 showFront();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
                 return false;
             }
         });
