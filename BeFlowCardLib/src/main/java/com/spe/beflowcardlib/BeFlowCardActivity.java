@@ -217,7 +217,7 @@ public class BeFlowCardActivity extends AppCompatActivity {
         edtCVV.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT ) {
+                if (actionId == EditorInfo.IME_ACTION_DONE ) {
                     // handle next button
                     showFront();
                     return true;
