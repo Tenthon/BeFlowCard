@@ -8,8 +8,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -208,6 +210,18 @@ public class BeFlowCardActivity extends AppCompatActivity {
 //                relDepan.setVisibility(GONE);
                 showBack();
                 textExpires.setBackgroundResource(R.drawable.background_treansparant);
+                return false;
+            }
+        });
+
+        edtCVV.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT ) {
+                    // handle next button
+                    showFront();
+                    return true;
+                }
                 return false;
             }
         });
