@@ -214,14 +214,10 @@ public class BeFlowCardActivity extends AppCompatActivity {
             }
         });
 
-        edtCVV.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_GO ) {
-                    // handle next button
-                    showFront();
-                    return true;
-                }
+        edtCVV.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int actionId, KeyEvent event) {
+                showFront();
                 return false;
             }
         });
