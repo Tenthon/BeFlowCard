@@ -210,6 +210,8 @@ public class BeFlowCardActivity extends AppCompatActivity {
 //                relDepan.setVisibility(GONE);
                 showBack();
                 textExpires.setBackgroundResource(R.drawable.background_treansparant);
+                textCard.setBackgroundResource(R.drawable.background_treansparant);
+                textName.setBackgroundResource(R.drawable.background_treansparant);
                 return false;
             }
         });
@@ -249,6 +251,20 @@ public class BeFlowCardActivity extends AppCompatActivity {
             }
         });
 
+        edtCardNumber.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT ) {
+                    // handle next button
+                    textCard.setBackgroundResource(R.drawable.background_animasi);
+                    textName.setBackgroundResource(R.drawable.background_treansparant);
+                    textExpires.setBackgroundResource(R.drawable.background_treansparant);
+                    return true;
+                }
+                return false;
+            }
+        });
+
 
         edtCardName.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -266,6 +282,20 @@ public class BeFlowCardActivity extends AppCompatActivity {
                 textCard.setBackgroundResource(R.drawable.background_treansparant);
                 textName.setBackgroundResource(R.drawable.background_animasi);
                 textExpires.setBackgroundResource(R.drawable.background_treansparant);
+                return false;
+            }
+        });
+
+        edtCardNumber.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT ) {
+                    // handle next button
+                    textCard.setBackgroundResource(R.drawable.background_treansparant);
+                    textName.setBackgroundResource(R.drawable.background_animasi);
+                    textExpires.setBackgroundResource(R.drawable.background_treansparant);
+                    return true;
+                }
                 return false;
             }
         });
