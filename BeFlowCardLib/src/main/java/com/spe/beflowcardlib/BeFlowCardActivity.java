@@ -214,12 +214,17 @@ public class BeFlowCardActivity extends AppCompatActivity {
             }
         });
 
-        edtCVV.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int actionId, KeyEvent event) {
-                showFront();
-                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+
+        edtCVV.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_GO ) {
+                    // handle next button
+                    showFront();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+                    return true;
+                }
                 return false;
             }
         });
