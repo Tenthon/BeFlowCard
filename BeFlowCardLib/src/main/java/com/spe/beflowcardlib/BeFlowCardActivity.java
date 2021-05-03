@@ -47,6 +47,7 @@ public class BeFlowCardActivity extends AppCompatActivity {
     private String valueMonth = null;
     private String valueYears = null;
     private String valueCVV = null;
+    private DataModel dataModel;
 
 
 
@@ -55,6 +56,7 @@ public class BeFlowCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_be_flow_card);
         initView();
+        dataModel = new DataModel();
     }
 
     private void initView() {
@@ -157,7 +159,6 @@ public class BeFlowCardActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         };
         edtCardName.addTextChangedListener(textWatcherCardName);
@@ -189,6 +190,7 @@ public class BeFlowCardActivity extends AppCompatActivity {
                     showFront();
                 }
             }
+
         };
         edtCVV.addTextChangedListener(textWatcherVCC);
 
@@ -389,6 +391,8 @@ public class BeFlowCardActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Tahun "+adapterYears.getItem(i), Toast.LENGTH_SHORT).show();
                     textExpires.setText(monthSelect + adapterYears.getItem(i));
                     valueYears = adapterYears.getItem(i);
+                    dataModel.setYears(adapterYears.getItem(i));
+
                 }
             }
 
@@ -415,18 +419,23 @@ public class BeFlowCardActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueCardNumber = edtCardNumber.getText().toString();
-                valueCardName = edtCardName.getText().toString();
-                valueCVV = edtCVV.getText().toString();
+                dataModel.setName(edtCardName.getText().toString());
+                dataModel.setNoCard(edtCardNumber.getText().toString());
+                dataModel.setCvv(edtCVV.getText().toString());
+                dataModel.setMonth(valueMonth);
+                dataModel.setYears(valueYears);
+//                valueCardNumber = edtCardNumber.getText().toString();
+//                valueCardName = edtCardName.getText().toString();
+//                valueCVV = edtCVV.getText().toString();
                 if(valueCardNumber.equals("") || valueCardName.equals("") || valueMonth == null || valueYears == null
                         || valueCVV.equals("")){
                     Toast.makeText(getApplicationContext(),"Informasi harus lengkap" , Toast.LENGTH_SHORT).show();
                 }else{
-                    System.out.println("Card Number" + valueCardNumber);
-                    System.out.println("Card Name" + valueCardName);
-                    System.out.println("Card Month" + valueMonth);
-                    System.out.println("Card Years"+ valueYears);
-                    System.out.println("Card CVV" + valueCVV);
+                    System.out.println("Card Number" + dataModel.getNoCard());
+                    System.out.println("Card Name" + dataModel.getName());
+                    System.out.println("Card Month" + dataModel.getMonth());
+                    System.out.println("Card Years"+ dataModel.getYears());
+                    System.out.println("Card CVV" + dataModel.getCvv());
                     Toast.makeText(getApplicationContext(),"Submit berhasil !!!" , Toast.LENGTH_SHORT).show();
                 }
             }
