@@ -419,14 +419,15 @@ public class BeFlowCardActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataModel.setName(edtCardName.getText().toString());
-                dataModel.setNoCard(edtCardNumber.getText().toString());
-                dataModel.setCvv(edtCVV.getText().toString());
+                valueCardNumber = edtCardNumber.getText().toString();
+                valueCardName = edtCardName.getText().toString();
+                valueCVV = edtCVV.getText().toString();
+                dataModel.setName(valueCardNumber);
+                dataModel.setNoCard(valueCardName);
+                dataModel.setCvv(valueCVV);
                 dataModel.setMonth(valueMonth);
                 dataModel.setYears(valueYears);
-//                valueCardNumber = edtCardNumber.getText().toString();
-//                valueCardName = edtCardName.getText().toString();
-//                valueCVV = edtCVV.getText().toString();
+//
                 if(valueCardNumber.equals("") || valueCardName.equals("") || valueMonth == null || valueYears == null
                         || valueCVV.equals("")){
                     Toast.makeText(getApplicationContext(),"Informasi harus lengkap" , Toast.LENGTH_SHORT).show();
